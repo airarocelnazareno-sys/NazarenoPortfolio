@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aira Rocel B. Nazareno — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pink-deep: #c2185b;
+            --pink-mid: #e91e8c;
+            --pink-bright: #ff4db8;
+            --pink-light: #fce4ec;
+            --pink-pale: #fff0f6;
+            --pink-glow: #ff80c8;
+            --dark: #1a0a12;
+            --dark-mid: #2d1120;
+            --text: #3d1a2b;
+            --text-light: #7a3d58;
+            --white: #ffffff;
+            --accent: #ff6b35;
+            --accent2: #7c3aed;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--pink-pale);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,240,246,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(194,24,91,0.15);
+            padding: 0 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 60px;
+        }
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem; color: var(--pink-deep);
+            letter-spacing: 0.02em;
+        }
+        .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+        .nav-links a {
+            font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--text-light);
+            text-decoration: none; transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--pink-deep); }
+
+        /* ── HERO ── */
+        #cover {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-mid) 40%, #5c0a32 100%);
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            padding: 80px 2rem 2rem;
+        }
+        .hero-bg-circles {
+            position: absolute; inset: 0; pointer-events: none;
+        }
+        .hero-bg-circles span {
+            position: absolute; border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,77,184,0.18) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        .hero-bg-circles span:nth-child(1) { width: 600px; height: 600px; top: -200px; right: -100px; animation-delay: 0s; }
+        .hero-bg-circles span:nth-child(2) { width: 400px; height: 400px; bottom: -100px; left: -50px; animation-delay: 1.5s; }
+        .hero-bg-circles span:nth-child(3) { width: 300px; height: 300px; top: 50%; left: 40%; animation-delay: 3s; }
+        @keyframes pulse { 0%,100%{opacity:0.6;transform:scale(1);} 50%{opacity:1;transform:scale(1.1);} }
+
+        .hero-inner {
+            position: relative; z-index: 2;
+            display: flex; align-items: center; gap: 4rem;
+            max-width: 960px; width: 100%;
+        }
+        .hero-photo-wrap {
+            flex-shrink: 0;
+            position: relative;
+        }
+        .hero-photo-wrap::before {
+            content: '';
+            position: absolute; inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, var(--pink-bright), var(--pink-mid), var(--accent2), var(--pink-bright));
+            animation: spin 4s linear infinite;
+            z-index: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .hero-photo-wrap::after {
+            content: ''; position: absolute; inset: -2px;
+            border-radius: 50%; background: var(--dark-mid); z-index: 1;
+        }
+        .hero-photo {
+            width: 200px; height: 200px;
+            border-radius: 50%; object-fit: cover; object-position: top;
+            position: relative; z-index: 2;
+            display: block;
+        }
+        .hero-text { flex: 1; }
+        .hero-tag {
+            display: inline-block;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem; letter-spacing: 0.12em;
+            color: var(--pink-glow); text-transform: uppercase;
+            border: 1px solid rgba(255,128,200,0.4);
+            padding: 4px 12px; border-radius: 20px;
+            margin-bottom: 1rem;
+            animation: fadeUp 0.6s ease both;
+        }
+        .hero-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            color: var(--white);
+            line-height: 1.1;
+            animation: fadeUp 0.6s 0.15s ease both;
+        }
+        .hero-name span { color: var(--pink-bright); font-style: italic; }
+        .hero-course {
+            margin-top: 1rem;
+            font-size: 0.95rem; color: rgba(255,255,255,0.65);
+            font-weight: 300;
+            animation: fadeUp 0.6s 0.3s ease both;
+        }
+        .hero-divider {
+            width: 60px; height: 2px;
+            background: linear-gradient(90deg, var(--pink-bright), transparent);
+            margin: 1.2rem 0;
+            animation: fadeUp 0.6s 0.4s ease both;
+        }
+        .hero-contact {
+            display: flex; flex-wrap: wrap; gap: 1rem;
+            animation: fadeUp 0.6s 0.5s ease both;
+        }
+        .hero-contact a {
+            display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.82rem; color: rgba(255,255,255,0.7);
+            text-decoration: none; transition: color 0.2s;
+        }
+        .hero-contact a:hover { color: var(--pink-bright); }
+        .hero-contact .icon {
+            width: 28px; height: 28px; border-radius: 50%;
+            background: rgba(255,77,184,0.15);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+        }
+        @keyframes fadeUp { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:translateY(0);} }
+
+        /* ── SECTIONS ── */
+        section { padding: 80px 2rem; }
+        .section-inner { max-width: 960px; margin: 0 auto; }
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+            color: var(--pink-mid); margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            color: var(--dark);
+            margin-bottom: 2.5rem;
+        }
+        .section-title span { color: var(--pink-deep); font-style: italic; }
+
+        /* ── ABOUT ── */
+        #about { background: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; align-items: start; }
+        .about-text p {
+            font-size: 1rem; line-height: 1.8; color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        .about-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+        .chip {
+            font-size: 0.75rem; font-weight: 500;
+            padding: 5px 14px; border-radius: 20px;
+            background: var(--pink-light); color: var(--pink-deep);
+            border: 1px solid rgba(194,24,91,0.2);
+        }
+        .about-stats { display: flex; flex-direction: row; gap: 1rem; flex-wrap: wrap; }
+        .stat-card {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-mid) 100%);
+            border-radius: 16px; padding: 1.5rem 2rem;
+            border: 1px solid rgba(255,77,184,0.2);
+            flex: 1; min-width: 160px;
+        }
+        .stat-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.5rem; color: var(--pink-bright);
+        }
+        .stat-desc { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-top: 0.3rem; }
+
+        /* ── RESUME ── */
+        #resume { background: var(--pink-pale); }
+        .resume-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .resume-card {
+            background: var(--white); border-radius: 16px;
+            padding: 2rem; border: 1px solid rgba(194,24,91,0.12);
+            position: relative; overflow: hidden;
+        }
+        .resume-card::before {
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: linear-gradient(180deg, var(--pink-bright), var(--pink-deep));
+        }
+        .resume-card h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem; color: var(--dark); margin-bottom: 0.4rem;
+        }
+        .resume-card .meta {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem; color: var(--pink-mid);
+            letter-spacing: 0.08em; margin-bottom: 0.8rem;
+        }
+        .resume-card p { font-size: 0.88rem; color: var(--text-light); line-height: 1.6; }
+        .cert-img {
+            width: 100%; border-radius: 10px; margin-top: 1rem;
+            border: 1px solid rgba(194,24,91,0.15);
+        }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pink-mid), var(--pink-deep));
+            color: white; font-size: 0.72rem; font-weight: 600;
+            padding: 3px 10px; border-radius: 12px; margin-top: 0.5rem;
+        }
+
+        /* ── SKILLS ── */
+        #skills { background: var(--dark); }
+        #skills .section-title { color: var(--white); }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .skill-group {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,77,184,0.15);
+            border-radius: 14px; padding: 1.5rem;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .skill-group:hover { border-color: var(--pink-bright); transform: translateY(-3px); }
+        .skill-group-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--pink-glow); margin-bottom: 1rem;
+        }
+        .skill-pill {
+            display: inline-block;
+            font-size: 0.8rem; font-weight: 500;
+            background: rgba(255,77,184,0.1);
+            color: rgba(255,255,255,0.85);
+            border: 1px solid rgba(255,77,184,0.2);
+            border-radius: 8px; padding: 5px 12px;
+            margin: 3px 3px 3px 0;
+            transition: background 0.2s;
+        }
+        .skill-pill:hover { background: rgba(255,77,184,0.25); }
+
+        /* ── PROJECTS ── */
+        #projects { background: var(--pink-pale); }
+        .projects-list { display: flex; flex-direction: column; gap: 2.5rem; }
+        .project-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem 2.5rem;
+            border: 1px solid rgba(194,24,91,0.1);
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 1.5rem; align-items: start;
+            transition: box-shadow 0.2s;
+        }
+        .project-card:hover { box-shadow: 0 8px 40px rgba(194,24,91,0.12); }
+        .project-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.65rem; letter-spacing: 0.1em;
+            color: var(--pink-mid); margin-bottom: 0.5rem;
+        }
+        .project-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem; color: var(--dark); margin-bottom: 0.6rem;
+        }
+        .project-desc { font-size: 0.88rem; color: var(--text-light); line-height: 1.7; margin-bottom: 1rem; }
+        .project-role { font-size: 0.85rem; color: var(--text); margin-bottom: 1rem; }
+        .project-role strong { color: var(--pink-deep); }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .tech-tag {
+            font-size: 0.72rem; font-weight: 600;
+            padding: 3px 10px; border-radius: 6px;
+            background: var(--pink-light); color: var(--pink-deep);
+        }
+        .project-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3.5rem; color: rgba(194,24,91,0.1);
+            line-height: 1; flex-shrink: 0;
+            align-self: start;
+        }
+
+        /* ── AWARDS ── */
+        #awards { background: var(--white); }
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+        .award-card {
+            background: linear-gradient(135deg, var(--dark) 0%, #3d0a24 100%);
+            border-radius: 16px; padding: 1.8rem;
+            border: 1px solid rgba(255,77,184,0.2);
+            position: relative; overflow: hidden;
+        }
+        .award-card::after {
+            content: '★';
+            position: absolute; bottom: -10px; right: 10px;
+            font-size: 5rem; color: rgba(255,77,184,0.07);
+        }
+        .award-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .award-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem; color: var(--white); margin-bottom: 0.4rem;
+        }
+        .award-detail { font-size: 0.8rem; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+        /* ── CERTIFICATIONS ── */
+        #certifications { background: var(--pink-pale); }
+        .cert-card {
+            background: var(--white); border-radius: 16px; padding: 2rem;
+            border: 1px solid rgba(194,24,91,0.12);
+            display: flex; align-items: flex-start; gap: 1.5rem;
+        }
+        .cert-icon {
+            width: 50px; height: 50px; border-radius: 12px; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--pink-mid), var(--pink-deep));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem;
+        }
+        .cert-info h4 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem; color: var(--dark); margin-bottom: 0.3rem;
+        }
+        .cert-info p { font-size: 0.85rem; color: var(--text-light); margin-bottom: 0.8rem; }
+        .cert-img-wrap { margin-top: 1.5rem; }
+
+        /* ── CONTACT ── */
+        #contact {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-mid) 50%, #5c0a32 100%);
+            text-align: center;
+        }
+        #contact .section-title { color: var(--white); }
+        .contact-grid {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .contact-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,77,184,0.2);
+            border-radius: 16px; padding: 1.5rem 2rem;
+            min-width: 200px; text-align: center;
+            transition: border-color 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+        .contact-item:hover { border-color: var(--pink-bright); transform: translateY(-3px); }
+        .contact-item .ci-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+        .contact-item .ci-label { font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--pink-glow); font-family: 'Space Mono', monospace; margin-bottom: 0.3rem; }
+        .contact-item .ci-val { font-size: 0.88rem; color: rgba(255,255,255,0.8); word-break: break-all; }
+
+        footer {
+            background: var(--dark);
+            text-align: center; padding: 1.5rem;
+            font-size: 0.75rem; color: rgba(255,255,255,0.3);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero-inner { flex-direction: column; text-align: center; gap: 2rem; }
+            .about-grid, .resume-grid { grid-template-columns: 1fr; }
+            .project-card { grid-template-columns: 1fr; }
+            .project-num { display: none; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+    <span class="nav-logo">Aira</span>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#backg">Background</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+    </nav>
+
+    <!-- COVER -->
+    <section id="cover">
+    <div class="hero-bg-circles">
+        <span></span><span></span><span></span>
+    </div>
+    <div class="hero-inner">
+        <div class="hero-photo-wrap">
+        <img src="aira.jpg" alt="Aira Rocel Nazareno" class="hero-photo">
+        </div>
+        <div class="hero-text">
+        <h1 class="hero-name">Aira Rocel<br><span>B. Nazareno</span></h1>
+        <p class="hero-course">2nd Year Student &nbsp;·&nbsp; BS Information Technology<br>Davao del Norte State College</p>
+        <div class="hero-divider"></div>
+        <div class="hero-contact">
+            <a href="https://www.facebook.com/aira.rocel.nazareno.2025" target="_blank">
+            <span class="icon">f</span> Aira Rocel Nazareno
+            </a>
+            <a href="tel:09096858408">
+            <span class="icon">✆</span> 0909 685 8408
+            </a>
+            <a href="mailto:airarocelnazareno@gmail.com">
+            <span class="icon">@</span> airarocelnazareno@gmail.com
+            </a>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+    <div class="section-inner">
+        <div class="section-label">Who I Am</div>
+        <h2 class="section-title">About <span>Me</span></h2>
+        <div class="about-grid">
+        <div class="about-text">
+            <p>I am an Information Technology student who enjoys learning about backend development, database management, and building systems that solve real-world problems. I am always eager to expand my technical skills and explore new technologies.</p>
+            <p>Outside of academics, I enjoy playing online games, which has helped me develop problem-solving, teamwork, and strategic thinking skills.</p>
+            <div class="about-chips">
+            <span class="chip">Backend Development</span>
+            <span class="chip">Database Management</span>
+            <span class="chip">System Design</span>
+            <span class="chip">Problem Solving</span>
+            <span class="chip">Team Player</span>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- Background -->
+    <section id="backg">
+    <div class="section-inner">
+        <div class="section-label">Background</div>
+        <h2 class="section-title">Education &amp; <span>Credentials</span></h2>
+        <div class="resume-grid">
+        <div class="resume-card">
+            <h3>BS Information Technology</h3>
+            <div class="meta">2024 – PRESENT · DAVAO DEL NORTE STATE COLLEGE</div>
+            <p>Currently in 2nd year of a Bachelor of Science in Information Technology program. Consistent Dean's Lister across three semesters.</p>
+        </div>
+        <div class="resume-card">
+            <h3>All-Female Programming Competition</h3>
+            <div class="meta">APRIL 23, 2026 · PCSC 26TH</div>
+            <p>Participated in the All-Female Programming Competition during the 26th Philippine Computing Science Congress held at the University of the Immaculate Conception, Bajada Campus, Davao City.</p>
+            <span class="badge">2nd Place</span>
+            <img src="codechumcert.jpg" alt="CodeChum Certificates" class="cert-img">
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+    <div class="section-inner">
+        <div class="section-label" style="color:var(--pink-glow)">What I Use</div>
+        <h2 class="section-title">Technical <span>Skills</span></h2>
+        <div class="skills-grid">
+        <div class="skill-group">
+            <div class="skill-group-title">Programming Languages</div>
+            <span class="skill-pill">Java</span>
+            <span class="skill-pill">PHP</span>
+            <span class="skill-pill">JavaScript</span>
+            <span class="skill-pill">Python</span>
+        </div>
+        <div class="skill-group">
+            <div class="skill-group-title">Web Development</div>
+            <span class="skill-pill">HTML</span>
+            <span class="skill-pill">CSS</span>
+            <span class="skill-pill">Bootstrap</span>
+            <span class="skill-pill">Laravel</span>
+            <span class="skill-pill">Vue.js</span>
+        </div>
+        <div class="skill-group">
+            <div class="skill-group-title">Database</div>
+            <span class="skill-pill">MySQL</span>
+            <span class="skill-pill">SQL</span>
+        </div>
+        <div class="skill-group">
+            <div class="skill-group-title">Tools &amp; IDEs</div>
+            <span class="skill-pill">NetBeans</span>
+            <span class="skill-pill">VS Code</span>
+            <span class="skill-pill">XAMPP</span>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+    <div class="section-inner">
+        <div class="section-label">What I've Built</div>
+        <h2 class="section-title">Academic <span>Projects</span></h2>
+        <div class="projects-list">
+
+        <div class="project-card">
+            <div>
+            <div class="project-year">1ST YEAR · 1ST SEM · 2024</div>
+            <div class="project-title">Attendance and Fines Monitoring System</div>
+            <p class="project-desc">A desktop-based system designed to record student attendance and monitor fines incurred due to absences, tardiness, or other violations. Helps organizations and instructors efficiently track records and automatically calculate penalties.</p>
+            <p class="project-role"><strong>Role:</strong> Prepared documentation and system analysis; planned the system workflow and defined how attendance records and fines would be processed.</p>
+            <div class="tech-tags">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Java Swing</span>
+                <span class="tech-tag">NetBeans IDE</span>
+            </div>
+            </div>
+            <div class="project-num">01</div>
+        </div>
+
+        <div class="project-card">
+            <div>
+            <div class="project-year">1ST YEAR · 2ND SEM · 2025</div>
+            <div class="project-title">AGRICONNECT: Corn Farmers Cooperative Management System</div>
+            <p class="project-desc">A management system for corn farmers and cooperatives in Panabo City to manage crop inventories, transactions, orders, and member information — improving operational efficiency and communication.</p>
+            <p class="project-role"><strong>Role:</strong> Developed backend functionalities; designed and implemented the database structure; assisted in UI design; implemented inventory, order management, and user authentication features.</p>
+            <div class="tech-tags">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Java Swing</span>
+                <span class="tech-tag">NetBeans IDE</span>
+                <span class="tech-tag">MySQL</span>
+            </div>
+            </div>
+            <div class="project-num">02</div>
+        </div>
+
+        <div class="project-card">
+            <div>
+            <div class="project-year">1ST YEAR · 2ND SEM · 2025</div>
+            <div class="project-title">Coralia: Marine Ecosystem Awareness Website</div>
+            <p class="project-desc">A static educational website promoting awareness of marine conservation and supporting UN SDG 14: Life Below Water. Provides information on marine ecosystems, environmental challenges, and conservation efforts.</p>
+            <p class="project-role"><strong>Role:</strong> Developed the front-end interface; designed page layouts and navigation; created responsive and visually appealing web pages; organized marine conservation content.</p>
+            <div class="tech-tags">
+                <span class="tech-tag">HTML</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">JavaScript</span>
+                <span class="tech-tag">VS Code</span>
+            </div>
+            </div>
+            <div class="project-num">03</div>
+        </div>
+
+        <div class="project-card">
+            <div>
+            <div class="project-year">2ND YEAR · 1ST SEM · 2025</div>
+            <div class="project-title">AquaTrace: Vessel Tracking System for Maritime Safety</div>
+            <p class="project-desc">A web-based vessel tracking system to improve maritime safety and navigation. Enables monitoring of vessel information and locations, supporting SDG 14 by promoting safer, more sustainable marine activities.</p>
+            <p class="project-role"><strong>Role:</strong> Developed backend functionalities; designed and managed database operations; implemented data processing and system logic; assisted in integrating backend services with the frontend.</p>
+            <div class="tech-tags">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">Vue.js</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">VS Code</span>
+            </div>
+            </div>
+            <div class="project-num">04</div>
+        </div>
+
+        <div class="project-card">
+            <div>
+            <div class="project-year">2ND YEAR · 2ND SEM · 2026</div>
+            <div class="project-title">Disaster Relief Goods Distribution System</div>
+            <p class="project-desc">A desktop-based decision-support system that optimizes allocation of relief goods during disaster response using the 0/1 Knapsack Algorithm — maximizing the value and effectiveness of aid delivery within a limited carrying capacity.</p>
+            <p class="project-role"><strong>Role:</strong> Developed backend logic; implemented the 0/1 Knapsack Algorithm; assisted in database integration and system testing; contributed to interface design.</p>
+            <div class="tech-tags">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Java Swing</span>
+                <span class="tech-tag">NetBeans IDE</span>
+            </div>
+            </div>
+            <div class="project-num">05</div>
+        </div>
+
+        </div>
+    </div>
+    </section>
+
+    <!-- AWARDS -->
+    <section id="awards">
+    <div class="section-inner">
+        <div class="section-label">Recognition</div>
+        <h2 class="section-title">Awards &amp; <span>Achievements</span></h2>
+        <div class="awards-grid">
+        <div class="award-card">
+            <div class="award-title">Dean's List — 3 Consecutive Semesters</div>
+            <div class="award-detail">1st Year, 1st &amp; 2nd Semester<br>2nd Year, 1st Semester<br>Davao del Norte State College</div>
+        </div>
+        <div class="award-card">
+            <div class="award-title">2nd Place — All-Female Programming Competition</div>
+            <div class="award-detail">26th Philippine Computing Science Congress<br>April 23, 2026 · UIC, Davao City</div>
+        </div>
+        <div class="award-card">
+            <div class="award-title">CodeChum Programming Certificates</div>
+            <div class="award-detail">Completed programming exercises and certifications through the CodeChum platform.</div>
+        </div>
+        </div>
+    </div>
+    </section>
+    
+    <!-- CERTIFICATIONS -->
+    <section id="certifications">
+    <div class="section-inner">
+        <div class="section-label">Credentials</div>
+        <h2 class="section-title">Certifi<span>cations</span></h2>
+        <div class="cert-card">
+        <div class="cert-icon">📜</div>
+        <div class="cert-info">
+            <h4>Certificate of Appreciation — PCSC 2026</h4>
+            <p>Awarded for valuable participation in the All-Female Programming Competition, achieving 2nd place at the 26th Philippine Computing Science Congress hosted by the University of the Immaculate Conception.</p>
+            <div class="cert-img-wrap">
+                <img src="codechumcert.jpg" alt="CodeChum Certificates" class="cert-img">
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+    <div class="section-inner">
+        <div class="section-label" style="color:var(--pink-glow)">Get In Touch</div>
+        <h2 class="section-title">Let's <span>Connect</span></h2>
+        <div class="contact-grid">
+        <a class="contact-item" href="mailto:airarocelnazareno@gmail.com">
+            <div class="ci-label">Email</div>
+            <div class="ci-val">airarocelnazareno@gmail.com</div>
+        </a>
+        <a class="contact-item" href="tel:09096858408">
+            <div class="ci-label">Phone</div>
+            <div class="ci-val">0909 685 8408</div>
+        </a>
+        <a class="contact-item" href="https://www.facebook.com/aira.rocel.nazareno.2025" target="_blank">
+            <div class="ci-label">Facebook</div>
+            <div class="ci-val">Aira Rocel Nazareno</div>
+        </a>
+        </div>
+    </div>
+    </section>
+
+    <footer>© 2026 Aira Rocel B. Nazareno · BS Information Technology</footer>
+
+</body>
+</html>
